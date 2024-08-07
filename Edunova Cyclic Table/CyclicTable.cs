@@ -213,13 +213,13 @@ namespace Edunova_Cyclic_Table
                     int choice;
 
 
-                    Console.WriteLine("Insert a number of rows.");
+                    Console.WriteLine("\nInsert a number of rows.");
                     int rowNumber = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Insert a number of columns.");
+                    Console.WriteLine("\nInsert a number of columns.");
                     int columnNumber = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Choose order:");
+                    Console.WriteLine("\nChoose order:");
                     Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
                     choice = int.Parse(Console.ReadLine());
 
@@ -366,7 +366,7 @@ namespace Edunova_Cyclic_Table
                     Console.WriteLine("\nInsert a number of columns.");
                     int columnNumber = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Choose order:");
+                    Console.WriteLine("\nChoose order:");
                     Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
                     choice = int.Parse(Console.ReadLine());
 
@@ -494,34 +494,910 @@ namespace Edunova_Cyclic_Table
 
         private static void ClockwiseBottomLeft()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+
+                        while (step <= product)
+                        {
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+                        while (product > 0)
+                        {
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
 
         private static void AnticlockwiseBottomLeft()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+
+                        while (step <= product)
+                        {
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+                            
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+                        while (product > 0)
+                        {
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+                            
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
 
 
         private static void ClockwiseTopLeft()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+                        while (step <= product)
+                        {
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+                        while (product > 0)
+                        {
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
 
         private static void AnticlockwiseTopLeft()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+
+                        while (step <= product)
+                        {
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+                        while (product > 0)
+                        {
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
 
 
         private static void ClockwiseTopRight()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+                        while (step <= product)
+                        {
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+                        while (product > 0)
+                        {
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
 
         private static void AnticlockwiseTopRight()
         {
-            throw new NotImplementedException();
+            bool loop = true;
+            while (loop)
+            {
+                try
+                {
+                    int choice;
+
+
+                    Console.WriteLine("\nInsert a number of rows.");
+                    int rowNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nInsert a number of columns.");
+                    int columnNumber = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("\nChoose order:");
+                    Console.WriteLine("\n\t1 - Ascending\n\t2 - Descending");
+                    choice = int.Parse(Console.ReadLine());
+
+                    int[,] table = new int[rowNumber, columnNumber];
+
+
+                    if (choice == 1)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+                        int step = 1;
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+
+                        while (step <= product)
+                        {
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[risingRow, j] = step++;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, risingColumn] = step++;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (step <= product)
+                                {
+                                    table[fallingRow, j] = step++;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (step <= product)
+                                {
+                                    table[i, fallingColumn] = step++;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else if (choice == 2)
+                    {
+                        loop = false;
+                        int product = rowNumber * columnNumber;
+
+
+                        int fallingRow = rowNumber - 1,
+                            risingRow = 0,
+                            fallingColumn = columnNumber - 1,
+                            risingColumn = 0;
+
+
+                        while (product > 0)
+                        {
+                            for (int j = fallingColumn; j >= risingColumn; j--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[risingRow, j] = product--;
+                                }
+                            }
+                            ++risingRow;
+
+
+                            for (int i = risingRow; i <= fallingRow; i++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, risingColumn] = product--;
+                                }
+                            }
+                            ++risingColumn;
+
+
+                            for (int j = risingColumn; j <= fallingColumn; j++)
+                            {
+                                if (product > 0)
+                                {
+                                    table[fallingRow, j] = product--;
+                                }
+                            }
+                            --fallingRow;
+
+
+                            for (int i = fallingRow; i >= risingRow; i--)
+                            {
+                                if (product > 0)
+                                {
+                                    table[i, fallingColumn] = product--;
+                                }
+                            }
+                            --fallingColumn;
+
+
+                        }
+                        PrintTable(table);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong choice input!\n");
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Wrong input! " + e.Message);
+                }
+            }
         }
         #endregion
 
